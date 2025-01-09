@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.dashboard
+package com.example.ruty_android_cmc_16th.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
