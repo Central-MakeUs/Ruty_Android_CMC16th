@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ruty_Android_CMC_16th"
+rootProject.name = "Ruty_CMC_16th"
 include(":app")
  

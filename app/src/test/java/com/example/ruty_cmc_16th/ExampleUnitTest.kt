@@ -1,4 +1,4 @@
-package com.example.ruty_android_cmc_16th
+package com.example.ruty_cmc_16th
 
 import org.junit.Test
 
