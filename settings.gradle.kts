@@ -1,6 +1,12 @@
 pluginManagement {
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -13,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ruty_CMC_16th"
+rootProject.name = "Ruty_Android"
 include(":app")
- 

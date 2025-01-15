@@ -1,23 +1,21 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safe.args)
 }
 
 android {
-    namespace = "com.example.ruty_cmc_16th"
-    compileSdk = 34
+    namespace = "com.cmc.ruty_android"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.ruty_cmc_16th"
+        applicationId = "com.cmc.ruty_android"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -30,44 +28,37 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
-        viewBinding = true
+        buildConfig = true // git 코드 시크릿 키 올리면 안된, 로컬 프로퍼티스에 그 값을 끌어다가 config처럼,
+        // 상수값들이 들어갈 수 있게, git에 안올라가게, graddle 8.0이상 쓰니까한다.
+        // 깃에 안올라가는 로컬 파일 생성
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+    viewBinding {
+        enable = true
     }
 }
 
 dependencies {
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.bundles.kotlinx.coroutine)
+    implementation(libs.bundles.androidx.navigation)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.gson.gson)
+    implementation(libs.squareup.retrofit2)
+    implementation(libs.squareup.gson.converter)
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.interceptor)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-    implementation("androidx.activity:activity-compose:1.9.3")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    implementation("com.google.android.gms:play-services-auth:20.6.0") // google login
+    testImplementation(libs.junit.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
 }
